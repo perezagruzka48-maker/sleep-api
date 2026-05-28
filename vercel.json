@@ -1,10 +1,10 @@
 {
-  "rewrites": [
-    { "source": "/api/analyze", "destination": "/API/analyze" }
-  ],
   "functions": {
     "API/analyze.js": {
       "maxDuration": 30
     }
-  }
+  },
+  "routes": [
+    { "src": "/api/analyze", "dest": "/API/analyze.js" }
+  ]
 }
