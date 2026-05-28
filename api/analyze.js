@@ -1,10 +1,8 @@
 export default async function handler(req, res) {
-  // Разрешаем запросы только с вашего домена
-  res.setHeader('Access-Control-Allow-Origin', 'https://perezagruzka48-maker.github.io');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // Браузер сначала делает OPTIONS запрос — отвечаем ок
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
