@@ -4,12 +4,8 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   try {
-    const prompt = req.body?.prompt;
-    const maxTokens = req.body?.maxTokens || 1000;
-
-    if (!prompt) {
-      return res.status(200).json({ error: 'no prompt', method: req.method });
-    }
+    const prompt = req.body?.prompt || 'привет';
+    const maxTokens = req.body?.maxTokens || 100;
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -26,8 +22,7 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
-    const text = data.content?.[0]?.text || '';
-    return res.status(200).json({ text });
+    return res.status(200).json({ debug: data });
 
   } catch (error) {
     return res.status(500).json({ error: error.message });
